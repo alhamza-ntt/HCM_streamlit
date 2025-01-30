@@ -2,4 +2,4 @@ seaborn
 matplotlib 
 scikit-learn 
 azure-ai-openai
-openai
+
