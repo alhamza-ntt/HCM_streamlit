@@ -9,7 +9,7 @@ from utils import get_completion, system_prompt_HCM
 # Set page configuration
 st.set_page_config(layout="wide")
 
-df = pd.read_csv('cleandata.csv')
+df = pd.read_csv('cleandata_level.csv')
 
 
 percentage_columns = [col for col in df.columns if df[col].astype(str).apply(lambda x: '%' in x).any()]
