@@ -1,5 +1,6 @@
 seaborn
 matplotlib 
 scikit-learn 
-azure-ai-openai
-
+openai==1.43.1
+azure-common==1.1.28
+azure-core==1.30.2
