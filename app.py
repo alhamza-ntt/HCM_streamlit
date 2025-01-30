@@ -145,11 +145,26 @@ def perform_clustering(df):
 kmeans = perform_clustering(df)
 
 # Function to generate a textual summary of the data
-def generate_summary(n=0):
+def generate_summary(n=12):
     summary = "### Employee Data Analysis Report\n\n"
     
+    # Salary Analysis Summary
+    summary += "#### Salary Analysis\n"
     
+    # Average Salary by Level
+    level_salary = df.groupby('Level')['Gehalt'].mean().round(2)
 
+    
+  
+    
+    # Average Salary by Role
+    role_salary = df.groupby('Rolle')['Gehalt'].mean().round(2)
+
+    
+    # Average Salary by Professional Experience
+    experience_salary = df.groupby('Berufserfahrung')['Gehalt'].mean().round(2)
+
+    
     # Clustering Analysis Summary
     summary += "#### Clustering Analysis\n"
     
@@ -179,7 +194,7 @@ def generate_summary(n=0):
     summary += "\n"
     
     # Individual Employee Summary (Example for the first employee)
-    employee = df.iloc[n]
+    employee = df.iloc[employee_id]
     summary += "#### Individual Employee Summary\n"
     summary += (
         f"- **Employee Details:**\n"
@@ -195,7 +210,6 @@ def generate_summary(n=0):
     level_avg = level_salary.get(employee['Level'], 0)
     education_avg = education_salary.get(employee['Abschluss (höchster)'], 0)
     role_avg = role_salary.get(employee['Rolle'], 0)
-    experience_salary = df.groupby('Berufserfahrung')['Gehalt'].mean()
     experience_avg = experience_salary.get(employee['Berufserfahrung'], 0)
     
     summary += (
@@ -212,7 +226,7 @@ def generate_summary(n=0):
 # Streamlit app layout
 st.title("Employee Data Analysis")
 
-employee_id = st.number_input("Enter Employee ID", min_value=0, max_value=len(df)-1, value=50, step=1)
+employee_id = st.number_input("Enter Employee ID", min_value=0, max_value=len(df)-1, value=12, step=1)
 
 st.sidebar.header("Options")
 option = st.sidebar.selectbox("Choose Analysis", ["Salary Analysis", "Clustering", "Report"])
