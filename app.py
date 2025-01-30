@@ -11,7 +11,7 @@ from utils import get_completion, system_prompt_HCM
 st.set_page_config(layout="wide")
 
 # this is the new data
-df = pd.read_csv('Full_Synthetic_Employee_Data(All).csv', header=1, encoding='latin1')
+df = pd.read_csv('Full_Synthetic_Employee_Data(NEW_All).csv', header=1, encoding='latin1')
 
 # pre processing *(specific to the data)*
 df['Durchschnittsgehalt Markt'] = df['Durchschnittsgehalt Markt'].str.replace(',', '').astype(int)
