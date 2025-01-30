@@ -2,22 +2,6 @@ from openai import AzureOpenAI
 import openai
 from config import GPT_CONFIG
 
-import requests
-import ast
-import re
-
-import requests
-import uuid
-import json
-from typing import Optional, Dict, Union
-
-#nltk.download('punkt')  
-from nltk.tokenize import sent_tokenize
-
-
-
-
-
 
 
 def get_completion(prompt, temperature=0.7, top_p=0.95, frequency_penalty=0, presence_penalty=0,
