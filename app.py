@@ -4,27 +4,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-import requests  # For API calls
 from utils import get_completion, system_prompt_HCM
 
 # Set page configuration
 st.set_page_config(layout="wide")
 
-# this is the new data
-df = pd.read_csv('Full_Synthetic_Employee_Data(NEW_All).csv', header=1, encoding='latin1')
-
-# pre processing *(specific to the data)*
-df['Durchschnittsgehalt Markt'] = df['Durchschnittsgehalt Markt'].str.replace(',', '').astype(int)
-df['Durchschnittsgehalt nach Bildungsstand'] = df['Durchschnittsgehalt nach Bildungsstand'].str.replace(',', '').astype(int)
-df['Durchschnittsgehalt nach Berufserfahrung'] = df['Durchschnittsgehalt nach Berufserfahrung'].str.replace(',', '').astype(int)
-df['Durchschnittsgehalt nach Job Profil'] = df['Durchschnittsgehalt nach Job Profil'].str.replace(',', '').astype(int)
-df['Durchschnittsgehalt nach Wohnort'] = df['Durchschnittsgehalt nach Wohnort'].str.replace(',', '').astype(int)
-df['Gehalt'] = df['Gehalt'].str.replace(',', '').astype(int)
-
-df['Arbeitsstunden Produktiv 1 (extern)'] = df['Arbeitsstunden Produktiv 1 (extern)'].str.replace(',', '').astype(int)
-df['Arbeitsstunden Produktiv 2'] = df['Arbeitsstunden Produktiv 2'].str.replace(',', '').astype(int)
-df['Arbeitsstunden Produktiv 3'] = df['Arbeitsstunden Produktiv 3'].str.replace(',', '').astype(int)
-df['Arbeitsstunden Gesamt'] = df['Arbeitsstunden Gesamt'].str.replace(',', '').astype(int)
+df = pd.read_csv('cleandata.csv')
 
 
 percentage_columns = [col for col in df.columns if df[col].astype(str).apply(lambda x: '%' in x).any()]
