@@ -148,37 +148,8 @@ kmeans = perform_clustering(df)
 def generate_summary(n=0):
     summary = "### Employee Data Analysis Report\n\n"
     
-    # Salary Analysis Summary
-    summary += "#### Salary Analysis\n"
     
-    # Average Salary by Level
-    level_salary = df.groupby('Level')['Gehalt'].mean().round(2)
-    summary += "- **Average Salary by Level:**\n"
-    for level, salary in level_salary.items():
-        summary += f"  - Level {level}: €{salary:.2f}\n"
-    summary += "\n"
-    
-    # Average Salary by Education
-    education_salary = df.groupby('Abschluss (höchster)')['Gehalt'].mean().round(2)
-    summary += "- **Average Salary by Education:**\n"
-    for education, salary in education_salary.items():
-        summary += f"  - {education}: €{salary:.2f}\n"
-    summary += "\n"
-    
-    # Average Salary by Role
-    role_salary = df.groupby('Rolle')['Gehalt'].mean().round(2)
-    summary += "- **Average Salary by Role:**\n"
-    for role, salary in role_salary.items():
-        summary += f"  - {role}: €{salary:.2f}\n"
-    summary += "\n"
-    
-    # Average Salary by Professional Experience
-    experience_salary = df.groupby('Berufserfahrung')['Gehalt'].mean().round(2)
-    summary += "- **Average Salary by Professional Experience:**\n"
-    for experience, salary in experience_salary.items():
-        summary += f"  - {experience} years: €{salary:.2f}\n"
-    summary += "\n"
-    
+
     # Clustering Analysis Summary
     summary += "#### Clustering Analysis\n"
     
@@ -224,6 +195,7 @@ def generate_summary(n=0):
     level_avg = level_salary.get(employee['Level'], 0)
     education_avg = education_salary.get(employee['Abschluss (höchster)'], 0)
     role_avg = role_salary.get(employee['Rolle'], 0)
+    experience_salary = df.groupby('Berufserfahrung')['Gehalt'].mean()
     experience_avg = experience_salary.get(employee['Berufserfahrung'], 0)
     
     summary += (
