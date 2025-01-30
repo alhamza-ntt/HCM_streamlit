@@ -155,7 +155,8 @@ def generate_summary(n=12):
     level_salary = df.groupby('Level')['Gehalt'].mean().round(2)
 
     
-  
+    education_salary = df.groupby('Abschluss (höchster)')['Gehalt'].mean().round(2)
+
     
     # Average Salary by Role
     role_salary = df.groupby('Rolle')['Gehalt'].mean().round(2)
@@ -194,7 +195,7 @@ def generate_summary(n=12):
     summary += "\n"
     
     # Individual Employee Summary (Example for the first employee)
-    employee = df.iloc[employee_id]
+    employee = df.iloc[n]
     summary += "#### Individual Employee Summary\n"
     summary += (
         f"- **Employee Details:**\n"
