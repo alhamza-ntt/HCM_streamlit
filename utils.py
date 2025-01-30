@@ -3,14 +3,10 @@ import openai
 from config import GPT_CONFIG
 
 
+
 def get_completion(prompt, temperature=0.7, top_p=0.95, frequency_penalty=0, presence_penalty=0,
                    verbose_token=False):
-    # Print or log the configuration to ensure no unexpected arguments like 'proxies' are being passed.
-    print(f"API Key: {GPT_CONFIG['api_key']}")
-    print(f"API Version: {GPT_CONFIG['api_version']}")
-    print(f"Azure Endpoint: {GPT_CONFIG['api_base']}")
-    print(f"Deployment Name: {GPT_CONFIG['deployment_name']}")
-
+  
     openai_client = AzureOpenAI(
         api_key=GPT_CONFIG["api_key"],
         api_version=GPT_CONFIG["api_version"],
@@ -20,7 +16,9 @@ def get_completion(prompt, temperature=0.7, top_p=0.95, frequency_penalty=0, pre
     try:
         response = openai_client.chat.completions.create(
             model=GPT_CONFIG["model"],
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
             temperature=temperature,
             top_p=top_p,
             frequency_penalty=frequency_penalty,
@@ -42,7 +40,7 @@ def get_completion(prompt, temperature=0.7, top_p=0.95, frequency_penalty=0, pre
         openai_client.close()
         app_logger.info(f"(OpenAI/GPT): OpenAI API request exceeded rate limit: {e}")
         return None
-
+    
 
 
 
